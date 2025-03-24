@@ -1,32 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jogo1</title>
-    <style>
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background-color: rgb(184, 96, 96);
-            color: white;
-            font-family: Arial, sans-serif;
-        }
-
-        canvas {
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Jogo1</title>
+   <style>
+       body {
+           display: flex;
+           flex-direction: column; 
+           align-items: center;
+           justify-content: center;
+           background-color: rgb(184, 96, 96);
+           color: white; 
+           font-family: Arial, sans-serif; 
+       }
+       canvas {
            margin-top: 90px; 
            background-color: rgb(189, 133, 133);
            border-radius: 8px;
        }
-    </style>
+       #pontuacao {
+           margin-top: 20px; 
+           font-size: 20px; 
+       }
+   </style>
 </head>
-
 <body>
-    <canvas id="jogoCanvas" width="800" height="400"></canvas>
-    <script src="script.js"></script>
+   <canvas id="jogoCanvas" width="800" height="400"></canvas>
+   <div id="pontuacao">Pontuação: 0 | Pontuação Máxima: 0</div>
+   <script src="script.js"></script>
 </body>
-
 </html>
