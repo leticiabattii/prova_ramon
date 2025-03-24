@@ -58,8 +58,8 @@ class Cobra extends Entidade {
     }
     
     desenhar() {
-        ctx.fillStyle = 'pink';
-        ctx.fillRect(this.x, this.y, this.largura, this.altura);
+        ctx.font = "35px Arial"; 
+        ctx.fillText("🐱", this.x, this.y + this.altura);
     }
     
     verificarColisao(comida) {
@@ -91,8 +91,8 @@ class Comida extends Entidade {
     }
     
     desenhar() {
-        ctx.fillStyle = 'crimson';
-        ctx.fillRect(this.x, this.y, this.largura, this.altura);
+        ctx.font = "30px Arial"; 
+        ctx.fillText("🐭", this.x, this.y + this.altura);
     }
 }
 
