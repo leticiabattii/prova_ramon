@@ -36,11 +36,12 @@ class Entidade {
 class Cobra extends Entidade {
     constructor(x, y, largura, altura) {
         super(x, y, largura, altura);
-        this.gameOver = false; 
+        this.gameOver = false;
+        this.pontuacao = 0; 
     }
 
     atualizar() {
-        if (this.gameOver) return; 
+        if (this.gameOver) return;
 
         if (teclasPressionadas.KeyW) {
             this.y -= 7;
@@ -70,14 +71,15 @@ class Cobra extends Entidade {
     }
 
     #houveColisao(comida) {
-        comida.x = Math.random() * (canvas.width - 20); 
-        comida.y = Math.random() * (canvas.height - 20); 
+        comida.x = Math.random() * (canvas.width - 20);
+        comida.y = Math.random() * (canvas.height - 20);
+        this.pontuacao++; 
     }
 
     verificarColisaoComLimites() {
         if (this.x < 0 || this.x + this.largura > canvas.width || 
             this.y < 0 || this.y + this.altura > canvas.height) {
-            this.gameOver = true; 
+            this.gameOver = true;
         }
     }
 }
@@ -94,6 +96,10 @@ const comida = new Comida();
 function loop() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
+    ctx.fillStyle = 'black';
+    ctx.font = '20px Arial';
+    ctx.fillText('Pontuação: ' + cobra.pontuacao, 10, 20);
+
     if (!cobra.gameOver) {
         cobra.desenhar();
         cobra.atualizar();
@@ -103,6 +109,7 @@ function loop() {
         ctx.fillStyle = 'black';
         ctx.font = '40px Arial';
         ctx.fillText('Game Over!', canvas.width / 2 - 100, canvas.height / 2);
+        ctx.fillText('Pontuação Final: ' + cobra.pontuacao, canvas.width / 2 - 100, canvas.height / 2 + 40);
     }
 
     requestAnimationFrame(loop);
