@@ -15,17 +15,26 @@
            font-family: Arial, sans-serif; 
        }
        canvas {
-           margin-top: 90px; 
+           margin-top: 80px; 
            background-color: rgb(189, 133, 133);
            border-radius: 8px;
+       }
+       .cabecalho{
+        height: 30px;
+        text-align: center;
        }
        #pontuacao {
            margin-top: 20px; 
            font-size: 20px; 
        }
+       
    </style>
 </head>
 <body>
+    <div class="cabecalho">
+        <h3>Faça o Tom capturar o Jerry!</h3>
+            <p>Letícia Abatti</p>
+    </div>
    <canvas id="jogoCanvas" width="800" height="400"></canvas>
    <div id="pontuacao">Pontuação: 0 | Pontuação Máxima: 0</div>
    <script src="script.js"></script>
