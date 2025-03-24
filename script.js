@@ -26,6 +26,7 @@ class Entidade {
         this.largura = largura;
         this.altura = altura;
     }
+
     desenhar() {
         ctx.fillStyle = 'black';
         ctx.fillRect(this.x, this.y, this.largura, this.altura);
@@ -35,9 +36,12 @@ class Entidade {
 class Cobra extends Entidade {
     constructor(x, y, largura, altura) {
         super(x, y, largura, altura);
+        this.gameOver = false; 
     }
 
     atualizar() {
+        if (this.gameOver) return; 
+
         if (teclasPressionadas.KeyW) {
             this.y -= 7;
         }
@@ -71,17 +75,9 @@ class Cobra extends Entidade {
     }
 
     verificarColisaoComLimites() {
-        if (this.x < 0) {
-            this.x = 0; 
-        }
-        if (this.x + this.largura > canvas.width) {
-            this.x = canvas.width - this.largura; 
-        }
-        if (this.y < 0) {
-            this.y = 0; 
-        }
-        if (this.y + this.altura > canvas.height) {
-            this.y = canvas.height - this.altura; 
+        if (this.x < 0 || this.x + this.largura > canvas.width || 
+            this.y < 0 || this.y + this.altura > canvas.height) {
+            this.gameOver = true; 
         }
     }
 }
@@ -97,10 +93,18 @@ const comida = new Comida();
 
 function loop() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    cobra.desenhar();
-    cobra.atualizar();
-    comida.desenhar();
-    cobra.verificarColisao(comida);
+    
+    if (!cobra.gameOver) {
+        cobra.desenhar();
+        cobra.atualizar();
+        comida.desenhar();
+        cobra.verificarColisao(comida);
+    } else {
+        ctx.fillStyle = 'black';
+        ctx.font = '40px Arial';
+        ctx.fillText('Game Over!', canvas.width / 2 - 100, canvas.height / 2);
+    }
+
     requestAnimationFrame(loop);
 }
 
