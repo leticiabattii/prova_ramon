@@ -74,12 +74,20 @@ class Cobra extends Entidade {
         comida.x = Math.random() * (canvas.width - 20);
         comida.y = Math.random() * (canvas.height - 20);
         this.pontuacao++; 
+        this.atualizarPontuacaoMaxima();
     }
 
     verificarColisaoComLimites() {
         if (this.x < 0 || this.x + this.largura > canvas.width || 
             this.y < 0 || this.y + this.altura > canvas.height) {
             this.gameOver = true;
+        }
+    }
+    
+    atualizarPontuacaoMaxima() {
+        const pontuacaoMaxima = localStorage.getItem('pontuacaoMaxima') || 0;
+        if (this.pontuacao > pontuacaoMaxima) {
+            localStorage.setItem('pontuacaoMaxima', this.pontuacao);
         }
     }
 }
@@ -99,6 +107,7 @@ function loop() {
     ctx.fillStyle = 'black';
     ctx.font = '20px Arial';
     ctx.fillText('Pontuação: ' + cobra.pontuacao, 10, 20);
+    ctx.fillText('Pontuação Máxima: ' + (localStorage.getItem('pontuacaoMaxima') || 0), 10, 40);
 
     if (!cobra.gameOver) {
         cobra.desenhar();
